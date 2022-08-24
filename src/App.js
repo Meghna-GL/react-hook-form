@@ -1,25 +1,23 @@
+import React from "react";
+import { useForm } from "react-hook-form";
 
-import './App.css';
+export default function App() {
+  //register your component into this form hook. 
+  //This will make its value available for both
+  // the form validation and submission.
 
-function App() {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => console.log(data);
+   
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("firstName")} />
+      <select {...register("gender")}>
+        <option value="female">female</option>
+        <option value="male">male</option>
+        <option value="other">other</option>
+      </select>
+      <input type="submit" />
+    </form>
   );
 }
-
-export default App;
